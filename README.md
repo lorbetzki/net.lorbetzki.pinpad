@@ -4,7 +4,6 @@ Diese Modul stellt ein Pinpad in der TileVisu dar. Es wird eine Variable erstell
 
 Die Nutzung des Moduls geschieht auf eigene Gefahr ohne Gewähr. Es handelt sich hierbei um einen frühen Entwicklungsstand.
 
-CSS und Javascript stammen von [Jaafar MADIH von codepen](https://codepen.io/Jmadih/pen/mvVOgr)
 
 ## Dokumentation
 

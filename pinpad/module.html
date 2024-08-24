@@ -1,161 +1,195 @@
 <!DOCTYPE html>
 <html>
-<!-- borrowed by -->
-<!-- https://codepen.io/Jmadih/pen/mvVOgr -->
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
-            overflow: hidden;  
-        }
-
+    
         #block {
             height: 100%;
             max-height: 100%;
-        }
-
-        #PINform input:focus,
-        #PINform select:focus,
-        #PINform textarea:focus,
-        #PINform button:focus {
-            outline: none;
-        }
-
-        #PINform {
-            background: #ededed;
             position: absolute;
-            width: 300px; height: 400px;
-            left: 50%;
-            margin-left: -180px;
-            top: 50%;
-            margin-top: -215px;
-            padding: 30px;
-            -webkit-box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-                -moz-box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-                    box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-        }
-
-        #PINbox {
-            background: #ededed;
-            margin: 3.5%;
-            width: 92%;
-            font-size: 4em;
-            text-align: center;
-            border: 1px solid #d5d5d5;
-        }
-
-        .PINbutton {
-            background: #ededed;
-            color: #7e7e7e;
-            border: none;
-            /* Buttons hervorheben */
-            /*background: linear-gradient(to bottom, #fafafa, #eaeaea);
-            -webkit-box-shadow: 0px 2px 2px -0px rgba(0,0,0,0.3);
-                -moz-box-shadow: 0px 2px 2px -0px rgba(0,0,0,0.3);
-                    box-shadow: 0px 2px 2px -0px rgba(0,0,0,0.3);*/
-            border-radius: 50%;
-            font-size: 1.5em;
-            text-align: center;
-            width: 60px;
-            height: 60px;
-            margin: 7px 20px;
+            margin: 0;
             padding: 0;
         }
-
-        .clear, .enter {
-            font-size: 1em;
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .PINbutton:hover {
-            box-shadow: #506CE8 0 0 1px 1px;
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .PINbutton:active {
-            background: #506CE8;
+        .container {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px 20px 20px;
+            background: var(--background-color);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .display {
+            height: 80px;
+            width: 100%;
+            outline: none;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 8vw;
+            color: var(--display-bg);
+        }
+
+        .buttons {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .buttons .clear, .buttons .enter {
+            font-size: 4vw;
+        }
+
+        .buttons button {
+            padding: 10px;
+            border-radius: 20%;
+            border: none;
+            font-size: 8vw;
+            background-color: var(--background-color);
+            color: var(--button-color);
+        }
+
+        .buttons button:active {
+            transform: scale(0.99);
+            background: #00CDAB;
             color: #fff;
         }
 
-        .clear:hover {
+        .buttons button:hover {
+            box-shadow: #00CDAB 0 0 1px 1px;
+        }
+
+        .buttons .clear:hover {
             box-shadow: #ff3c41 0 0 1px 1px;
         }
 
-        .clear:active {
+        .buttons .clear:active {
             background: #ff3c41;
             color: #fff;
         }
        
-        .enter:hover {
+        .buttons .enter:hover {
             box-shadow: #47cf73 0 0 1px 1px;
         }
         
-        .enter:active {
+        .buttons .enter:active {
             background: #47cf73;
             color: #fff;
         }
-        
-        .shadow{
-            -webkit-box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-                -moz-box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-                    box-shadow: 0px 5px 5px -0px rgba(0,0,0,0.3);
-        }
+     
     </style>
 </head>
 
 <body>
     <div id="block">
-        <div id="PINcode"></div>
+        <div class="container">
+            <input type="password" class="display" disabled/>
+      
+            <div class="buttons">
+              <button data-value="1">1</button>
+              <button data-value="2">2</button>
+              <button data-value="3">3</button>
+      
+              <button data-value="4">4</button>
+              <button data-value="5">5</button>
+              <button data-value="6">6</button>
+      
+              <button data-value="7">7</button>
+              <button data-value="8">8</button>
+              <button data-value="9">9</button>
+      
+              <button class="clear" data-value="clear">clear</button>
+              <button data-value="0">0</button>
+              <button class="enter" data-value="enter">enter</button>
+            </div>
+          </div>
     </div>
     <script type="text/javascript" charset="UTF-8">
 
-        document.getElementById("PINcode").innerHTML="<form action='' method='' name='PINform' id='PINform' autocomplete='off' draggable='false'>" +
-		"<input id='PINbox' type='password' value='' name='PINbox' disabled />" +
-		"<br/>" +
-		"<input type='button' class='PINbutton' name='1' value='1' id='1' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='2' value='2' id='2' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='3' value='3' id='3' onClick=addNumber(this); />" +
-		"<br>" +
-		"<input type='button' class='PINbutton' name='4' value='4' id='4' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='5' value='5' id='5' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='6' value='6' id='6' onClick=addNumber(this); />" +
-		"<br>" +
-		"<input type='button' class='PINbutton' name='7' value='7' id='7' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='8' value='8' id='8' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton' name='9' value='9' id='9' onClick=addNumber(this); />" +
-		"<br>" +
-		"<input type='button' class='PINbutton clear' name='-' value='clear' id='-' onClick=clearForm(this); />" +
-		"<input type='button' class='PINbutton' name='0' value='0' id='0' onClick=addNumber(this); />" +
-		"<input type='button' class='PINbutton enter' name='+' value='enter' id='+' onClick=submitForm(PINbox); />" +
-	    "</form>";
+        const display = document.querySelector(".display");
+        const buttons = document.querySelectorAll("button");
+        let output = "";
+        let pin = "";
+        const ShowDisplay = (btnValue) => {
+            switch (btnValue) {
+                case 'clear': //clear input
+                    output = "";
+                    display.value = "";
+                break;
+                case "enter": // enter and check if output not empty
+                    display.type = "text";
+                    if (output == "") {
+                        display.value = "Enter a Pin...";
+                        setTimeout(clearForm, 2000);
+                    } else {
+                    pin = output;
+                    display.value = "sending...";
+                    setTimeout(clearForm, 2000);
+                    requestAction('PinID',pin);
 
-        function addNumber(code){
-            document.getElementById('PINbox').value = document.getElementById('PINbox').value+code.value;
-        }
+                }
+                break;
 
-        // leert die Box und setzt das input type von text auf password zurück
-        function clearForm(){
-            document.getElementById('PINbox').value = "";
-            document.querySelector('input[type="text"]').type = "password";
-        }
+                default:
+                    output += btnValue;
+                    display.value = output;
+                    console.log(btnValue);
+            }
+        };
         
-        // funktion zum senden der Werte
-        function submitForm(e) {
+        switch (JSON.parse(localStorage.getItem('flutter.themeID'))) {
             
-            if (e.value == "") {
-                document.querySelector('input[type="password"]').type = "text";
-                document.getElementById('PINbox').value = "Enter a PIN";
-               setTimeout(clearForm, 2000);
-               
-            } else {
-                requestAction('PinID',e.value);
-                document.querySelector('input[type="password"]').type = "text";
-                document.getElementById('PINbox').value = "sending";
-                setTimeout(clearForm, 2000);
+            case 0: //Standard (Light)
+                console.log("light");
+                document.documentElement.style.setProperty('--background-color', '#fff');
+                document.documentElement.style.setProperty('--display-bg', '#7e7e7e');
+                document.documentElement.style.setProperty('--border-color', '#d5d5d5');
+                document.documentElement.style.setProperty('--button-color', '#7e7e7e');
 
-            };
-};
+                break;
+            
+            case 1: //Dark
+                console.log("dark");
+                document.documentElement.style.setProperty('--background-color', '#333438');
+                document.documentElement.style.setProperty('--display-bg', '#ededed');
+                document.documentElement.style.setProperty('--border-color', '#1f1f1f');
+                document.documentElement.style.setProperty('--button-color', '#fff');
 
+                break;
+        }
 
-</script>
+        function clearForm()
+        {
+                    display.value = "";
+                    display.type = "password";
+                    output = "";
+        }
+        //Add event listener to buttons, and call ShowDisplay
+        buttons.forEach((button) => 
+        {
+            button.addEventListener("click", (e) => ShowDisplay(e.target.dataset.value));
+        }
+    );
+
+    </script>
        
 </body>
 
