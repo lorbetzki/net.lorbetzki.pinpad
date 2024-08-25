@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-    
         #block {
             height: 100%;
             max-height: 100%;
@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;  
+            overflow: hidden;
         }
 
         .container {
@@ -55,7 +55,8 @@
             grid-template-columns: repeat(3, 1fr);
         }
 
-        .buttons .clear, .buttons .enter {
+        .buttons .clear,
+        .buttons .enter {
             font-size: 4vw;
         }
 
@@ -86,42 +87,41 @@
             background: #ff3c41;
             color: #fff;
         }
-       
+
         .buttons .enter:hover {
             box-shadow: #47cf73 0 0 1px 1px;
         }
-        
+
         .buttons .enter:active {
             background: #47cf73;
             color: #fff;
         }
-     
     </style>
 </head>
 
 <body>
     <div id="block">
         <div class="container">
-            <input type="password" class="display" disabled/>
-      
+            <input type="password" class="display" disabled />
+
             <div class="buttons">
-              <button data-value="1">1</button>
-              <button data-value="2">2</button>
-              <button data-value="3">3</button>
-      
-              <button data-value="4">4</button>
-              <button data-value="5">5</button>
-              <button data-value="6">6</button>
-      
-              <button data-value="7">7</button>
-              <button data-value="8">8</button>
-              <button data-value="9">9</button>
-      
-              <button class="clear" data-value="clear">clear</button>
-              <button data-value="0">0</button>
-              <button class="enter" data-value="enter">enter</button>
+                <button data-value="1">1</button>
+                <button data-value="2">2</button>
+                <button data-value="3">3</button>
+
+                <button data-value="4">4</button>
+                <button data-value="5">5</button>
+                <button data-value="6">6</button>
+
+                <button data-value="7">7</button>
+                <button data-value="8">8</button>
+                <button data-value="9">9</button>
+
+                <button class="clear" data-value="clear">clear</button>
+                <button data-value="0">0</button>
+                <button class="enter" data-value="enter">enter</button>
             </div>
-          </div>
+        </div>
     </div>
     <script type="text/javascript" charset="UTF-8">
 
@@ -129,6 +129,9 @@
         const buttons = document.querySelectorAll("button");
         let output = "";
         let pin = "";
+        let clearaftersend = "";
+
+        // blets create the Display
         const ShowDisplay = (btnValue) => {
             switch (btnValue) {
                 case 'clear': //clear input
@@ -138,37 +141,47 @@
                 case "enter": // enter and check if output not empty
                     display.type = "text";
                     if (output == "") {
-                        display.value = "Enter a Pin...";
+                        display.value = translate('Enter PIN...');
                         setTimeout(clearForm, 2000);
                     } else {
-                    pin = output;
-                    display.value = "sending...";
-                    setTimeout(clearForm, 2000);
-                    requestAction('PinID',pin);
-
-                }
+                        pin = output;
+                        display.value = translate('Send PIN...');
+                        clearaftersend = setTimeout(clearForm, 2000);
+                        requestAction('PinID', pin);
+                    }
                 break;
-
+                // all other buttons
                 default:
                     output += btnValue;
                     display.value = output;
                     console.log(btnValue);
             }
         };
-        
+
+        // receive textmessage from symcon and show on display
+        function handleMessage(data) {
+            clearTimeout(clearaftersend);
+            const message = JSON.parse(data);
+            //console.log(message.sendText,message.timeOut);
+            display.type = "text";
+            display.value = message.sendText;
+            setTimeout(clearForm, message.timeOut);
+        }
+
+        // create theme for Light/Darkmode
         switch (JSON.parse(localStorage.getItem('flutter.themeID'))) {
-            
+
             case 0: //Standard (Light)
-                console.log("light");
+                //console.log("light");
                 document.documentElement.style.setProperty('--background-color', '#fff');
                 document.documentElement.style.setProperty('--display-bg', '#7e7e7e');
                 document.documentElement.style.setProperty('--border-color', '#d5d5d5');
                 document.documentElement.style.setProperty('--button-color', '#7e7e7e');
 
                 break;
-            
+
             case 1: //Dark
-                console.log("dark");
+                //console.log("dark");
                 document.documentElement.style.setProperty('--background-color', '#333438');
                 document.documentElement.style.setProperty('--display-bg', '#ededed');
                 document.documentElement.style.setProperty('--border-color', '#1f1f1f');
@@ -177,21 +190,21 @@
                 break;
         }
 
-        function clearForm()
-        {
-                    display.value = "";
-                    display.type = "password";
-                    output = "";
+        // clear Display.
+        function clearForm() {
+            display.value = "";
+            display.type = "password";
+            output = "";
         }
+
         //Add event listener to buttons, and call ShowDisplay
-        buttons.forEach((button) => 
-        {
+        buttons.forEach((button) => {
             button.addEventListener("click", (e) => ShowDisplay(e.target.dataset.value));
         }
-    );
+        );
 
     </script>
-       
+
 </body>
 
 </html>

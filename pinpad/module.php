@@ -23,7 +23,6 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-			//$this->UpdateVisualizationValue();
 		}
 
 		public function RequestAction($Ident, $value)
@@ -43,14 +42,19 @@
 
 		public function GetVisualizationTile()
 		{
-			       // Füge ein Skript hinzu, um beim Laden, analog zu Änderungen bei Laufzeit, die Werte zu setzen
-
-				   // Füge statisches HTML aus Datei hinzu
-				   $module = file_get_contents(__DIR__ . '/module.html');
-		   
-				   // Gebe alles zurück.
-				   // Wichtig: $initialHandling nach hinten, da die Funktion handleMessage erst im HTML definiert wird
-				   return $module;
+			// Füge statisches HTML aus Datei hinzu
+			$module = file_get_contents(__DIR__ . '/module.html');
+	
+			return $module;
 		}
-		
+
+		// sende Text zum Display
+		public function sendText(string $Text, int $Seconds)
+		{
+			$result = [];
+			$result['sendText'] = $Text;
+			$result['timeOut'] = $Seconds * 1000;
+
+			$this->UpdateVisualizationValue(json_encode($result));
+		}
 	}
