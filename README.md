@@ -50,7 +50,7 @@ Beispiel:
 
 sendet o.a. Text und zeigt es 3 sek. an.
 
-![Pinpad mit Text](doc/pinpad-test.png)
+![Pinpad mit Text](docs/pinpad-test.png)
 
 ## 6. Symcon Kachel
 
@@ -58,8 +58,8 @@ Die Pinpad-Kachel hat neben einem Light- auch einen Darkmode, je nachdem wie Ihr
 
 Lightmode
 
-![Pinpad Light Mode](doc/pinpad-light.png)
+![Pinpad Light Mode](docs/pinpad-light.png)
 
 Darkmode
 
-![Pinpad Dark Mode](doc/pinpad-dark.png)
+![Pinpad Dark Mode](docs/pinpad-dark.png)
