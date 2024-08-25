@@ -12,9 +12,9 @@ Die Nutzung des Moduls geschieht auf eigene Gefahr ohne Gewähr. Es handelt sich
 1. [Funktionsumfang](#1-funktionsumfang) 
 2. [Systemanforderungen](#2-systemanforderungen)
 3. [Installation](#3-installation)
-4. [Statusvariablen und Profile](#5-statusvariablen-und-profile)
-5. [PHP-Befehlsreferenz](#6-php-befehlsreferenz)
-6. [Symcon Kachel](#7-symcon-kachel)
+4. [Statusvariablen und Profile](#4-statusvariablen-und-profile)
+5. [PHP-Befehlsreferenz](#5-php-befehlsreferenz)
+6. [Symcon Kachel](#6-symcon-kachel)
 
 ## 1. Funktionsumfang
 
