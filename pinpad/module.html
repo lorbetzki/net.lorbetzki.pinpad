@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+
         #block {
             height: 100%;
             max-height: 100%;
@@ -33,7 +34,7 @@
             width: 100%;
             border-radius: 10px;
             padding: 10px 20px 20px;
-            background: var(--background-color);
+            /*background-color: var(--background-color);*/
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
         }
@@ -46,7 +47,6 @@
             text-align: center;
             margin-bottom: 10px;
             font-size: 8vw;
-            color: var(--display-bg);
         }
 
         .buttons {
@@ -168,26 +168,24 @@
             setTimeout(clearForm, message.timeOut);
         }
 
-        // create theme for Light/Darkmode
+        // change theme for Light/Darkmode
         switch (JSON.parse(localStorage.getItem('flutter.themeID'))) {
 
             case 0: //Standard (Light)
                 //console.log("light");
                 document.documentElement.style.setProperty('--background-color', '#fff');
-                document.documentElement.style.setProperty('--display-bg', '#7e7e7e');
                 document.documentElement.style.setProperty('--border-color', '#d5d5d5');
                 document.documentElement.style.setProperty('--button-color', '#7e7e7e');
 
-                break;
+            break;
 
             case 1: //Dark
                 //console.log("dark");
                 document.documentElement.style.setProperty('--background-color', '#333438');
-                document.documentElement.style.setProperty('--display-bg', '#ededed');
                 document.documentElement.style.setProperty('--border-color', '#1f1f1f');
                 document.documentElement.style.setProperty('--button-color', '#fff');
 
-                break;
+            break;
         }
 
         // clear Display.

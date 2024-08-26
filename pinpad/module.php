@@ -42,9 +42,11 @@
 
 		public function GetVisualizationTile()
 		{
+			//$initialHandling = '<script>handleMessage(' . json_encode($this->GetFullUpdateMessage()) . ')</script>';
+
 			// Füge statisches HTML aus Datei hinzu
 			$module = file_get_contents(__DIR__ . '/module.html');
-	
+			//			return $module .$initialHandling;
 			return $module;
 		}
 

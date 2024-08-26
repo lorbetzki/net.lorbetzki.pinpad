@@ -3,10 +3,10 @@
     "name": "Pinpad",
     "type": 3,
     "vendor": "",
-    "aliases": [],
+    "aliases": ["Pinpad","Pin Pad"],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
     "prefix": "PINPAD",
-    "url": ""
+    "url": "https://github.com/lorbetzki/net.lorbetzki.pinpad/blob/master/README.md"
 }
