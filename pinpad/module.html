@@ -34,16 +34,13 @@
             width: 100%;
             border-radius: 10px;
             padding: 10px 20px 20px;
-            /*background-color: var(--background-color);*/
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
         .display {
             height: 80px;
             width: 100%;
             outline: none;
-            border: 1px solid var(--border-color);
             text-align: center;
             margin-bottom: 10px;
             font-size: 8vw;
@@ -65,7 +62,7 @@
             border-radius: 20%;
             border: none;
             font-size: 8vw;
-            background-color: var(--background-color);
+            background-color: var(--buttonbg-color);
             color: var(--button-color);
         }
 
@@ -131,6 +128,11 @@
         let pin = "";
         let clearaftersend = "";
 
+        // set color for buttons depending on the theme
+        document.documentElement.style.setProperty('--button-color', queryParameters.get('textcolor'));
+        document.documentElement.style.setProperty('--buttonbg-color', queryParameters.get('backgroundColor'));
+
+        
         // blets create the Display
         const ShowDisplay = (btnValue) => {
             switch (btnValue) {
@@ -168,26 +170,6 @@
             setTimeout(clearForm, message.timeOut);
         }
 
-        // change theme for Light/Darkmode
-        switch (JSON.parse(localStorage.getItem('flutter.themeID'))) {
-
-            case 0: //Standard (Light)
-                //console.log("light");
-                document.documentElement.style.setProperty('--background-color', '#fff');
-                document.documentElement.style.setProperty('--border-color', '#d5d5d5');
-                document.documentElement.style.setProperty('--button-color', '#7e7e7e');
-
-            break;
-
-            case 1: //Dark
-                //console.log("dark");
-                document.documentElement.style.setProperty('--background-color', '#333438');
-                document.documentElement.style.setProperty('--border-color', '#1f1f1f');
-                document.documentElement.style.setProperty('--button-color', '#fff');
-
-            break;
-        }
-
         // clear Display.
         function clearForm() {
             display.value = "";
@@ -200,9 +182,6 @@
             button.addEventListener("click", (e) => ShowDisplay(e.target.dataset.value));
         }
         );
-
     </script>
-
 </body>
-
 </html>
