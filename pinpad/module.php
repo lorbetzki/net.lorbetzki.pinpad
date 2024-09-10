@@ -37,7 +37,7 @@
 		private function RegisterVariable()
 		{
 			$this->RegisterVariableString('PinID', $this->Translate('Pin'),'',0);
-
+            IPS_SetHidden($this->GetIDForIdent('PinID'), true);
 		}
 
 		public function GetVisualizationTile()
