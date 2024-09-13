@@ -31,13 +31,15 @@
 			{
 				            $this->SendDebug('Error in RequestAction', 'Variable to be updated does not exist'.$value, 0);
 							$this->SetValue($Ident, $value);
-
 			}
 		}
 		private function RegisterVariable()
 		{
-			$this->RegisterVariableString('PinID', $this->Translate('Pin'),'',0);
-            IPS_SetHidden($this->GetIDForIdent('PinID'), true);
+			if (@!$this->GetIDForIdent('PinID'))
+			{ 
+				$this->RegisterVariableString('PinID', $this->Translate('Pin'),'',0);
+            	IPS_SetHidden($this->GetIDForIdent('PinID'), true);
+			}
 		}
 
 		public function GetVisualizationTile()
