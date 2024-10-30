@@ -4,9 +4,9 @@
     "author": "Kristian Lorbetzki",
     "url": "https://github.com/lorbetzki/net.lorbetzki.pinpad.git",
     "compatibility": {
-        "version": "7.1"
+        "version": "7.2"
     },
-    "version": "1.3.6",
-    "build": 20240913,
+    "version": "1.4",
+    "build": 20241030,
     "date": 0
 }
